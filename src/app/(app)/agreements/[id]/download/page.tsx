@@ -1,3 +1,4 @@
+import React from "react"
 import { createClient } from "@/lib/db/server"
 import { redirect, notFound } from "next/navigation"
 import Link from "next/link"
