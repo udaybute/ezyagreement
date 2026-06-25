@@ -1,60 +1,50 @@
-/**
- * Cron Job: Delete Expired Documents
- * - Runs daily via Vercel Cron
- * - Deletes documents older than 30 days
- * - DPDP Act 2025: data minimisation requirement
- * - Protected by CRON_SECRET
- */
-
 import { NextResponse } from "next/server"
+import { createClient } from "@/lib/db/server"
 import { createAdminClient } from "@/lib/db/admin"
+import { logAuditEvent } from "@/lib/utils"
+
+export const dynamic = "force-dynamic"
 
 export async function GET(request: Request) {
   try {
-    // ── Verify cron secret ───────────────────────────────
-    const authHeader = request.headers.get("authorization")
-    const cronSecret = process.env.CRON_SECRET
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
 
-    if (authHeader !== `Bearer ${cronSecret}`) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 401 }
-      )
+    if (!user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
     const adminSupabase = createAdminClient()
-    const now = new Date().toISOString()
 
-    // ── Delete expired documents ─────────────────────────
-    const { data: deleted, error } = await adminSupabase
-      .from("documents")
-      .delete()
-      .lt("delete_after", now)
-      .neq("status", "signed") // Keep signed documents
-      .select("id")
+    const [profile, documents, payments, clients] = await Promise.all([
+      adminSupabase.from("profiles").select("*").eq("id", user.id).single(),
+      adminSupabase.from("documents").select("*").eq("user_id", user.id),
+      adminSupabase.from("payments").select("*").eq("user_id", user.id),
+      adminSupabase.from("broker_clients").select("*").eq("broker_id", user.id),
+    ])
 
-    if (error) {
-      console.error("Cron delete error:", error)
-      return NextResponse.json(
-        { error: "Delete failed" },
-        { status: 500 }
-      )
+    const exportData = {
+      export_info: {
+        exported_at: new Date().toISOString(),
+        exported_by: user.email,
+        purpose: "DPDP Act 2025 - Right to Access",
+      },
+      profile: profile.data,
+      documents: documents.data ?? [],
+      payments: payments.data ?? [],
+      broker_clients: clients.data ?? [],
     }
 
-    const count = deleted?.length ?? 0
-    console.log(`Cron: Deleted ${count} expired documents`)
+    await logAuditEvent(user.id, "DATA_EXPORTED", user.id, request)
 
-    return NextResponse.json({
-      success: true,
-      deleted_count: count,
-      ran_at: now,
+    return new NextResponse(JSON.stringify(exportData, null, 2), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Content-Disposition": `attachment; filename="elvatrixa-my-data-${Date.now()}.json"`,
+      },
     })
-
   } catch (error) {
-    console.error("Cron error:", error)
-    return NextResponse.json(
-      { error: "Cron job failed" },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: "Export failed" }, { status: 500 })
   }
 }
