@@ -1,18 +1,22 @@
 import Link from "next/link"
+import Navbar from "@/components/shared/navbar"
+import Footer from "@/components/shared/footer"
 
 export default function HomePage() {
   return (
-    <div>
+    <>
+      <Navbar isLoggedIn={false} />
+      <main className="min-h-screen">
       <section className="bg-white py-16 md:py-24 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <span className="inline-block bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mb-4">
             DPDP Act 2025 Compliant · Zero Aadhaar Storage
           </span>
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            Rental Agreement in 5 Minutes — Rs.199 Flat
+            Rental Agreement in<br className="hidden md:block" /> 5 Minutes — Rs.199 Flat
           </h1>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            India first privacy-first legal document platform.
+            India's first privacy-first legal document platform.
             State-specific agreements, instant PDF, WhatsApp delivery.
             28 states covered.
           </p>
@@ -45,7 +49,7 @@ export default function HomePage() {
               { icon: "🇮🇳", title: "Hindi + Marathi", desc: "Vernacular output for 600M+ users. English, Hindi, Marathi, Tamil." },
             ].map((f) => (
               <div key={f.title} className="card">
-                <div className="text-3xl mb-3">{f.icon}</div>
+                <div className="text-3xl mb-3" aria-hidden="true">{f.icon}</div>
                 <h3 className="font-semibold text-gray-900 mb-1">{f.title}</h3>
                 <p className="text-gray-500 text-sm">{f.desc}</p>
               </div>
@@ -68,6 +72,8 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
-    </div>
+      </main>
+      <Footer />
+    </>
   )
 }
