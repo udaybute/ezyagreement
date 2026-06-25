@@ -59,7 +59,7 @@ export default function PricingPage() {
               <span className="text-green-500">✓</span> 30-day storage
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-500">✓</span> Hindi/Marathi output
+              <span className="text-green-500">✓</span> Hindi/Marathi/Tamil output
             </li>
             <li className="flex items-center gap-2">
               <span className="text-green-500">✓</span> GST invoice

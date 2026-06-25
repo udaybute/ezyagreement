@@ -30,7 +30,7 @@ export default function HomePage() {
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
               India&apos;s first privacy-first legal document platform.
               State-specific agreements, instant PDF, WhatsApp delivery.
-              28 states covered.
+              22 states covered.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/login" className="btn-primary text-base px-8 py-3">
@@ -90,7 +90,7 @@ export default function HomePage() {
                 },
                 {
                   icon: "🗺️",
-                  title: "28 States",
+                  title: "22 States",
                   desc: "State-specific clauses, correct stamp duty, registration rules.",
                 },
                 {
@@ -105,7 +105,7 @@ export default function HomePage() {
                 },
                 {
                   icon: "🇮🇳",
-                  title: "Hindi + Marathi",
+                  title: "Hindi, Marathi, Tamil",
                   desc: "Vernacular output for 600M+ users. English, Hindi, Marathi, Tamil.",
                 },
               ].map((f) => (
@@ -135,7 +135,7 @@ export default function HomePage() {
                 { icon: "📋", title: "NOC", price: "Rs.199", desc: "No Objection Certificate — 5 types", href: "/login" },
                 { icon: "⚖️", title: "Affidavit", price: "Rs.199", desc: "General, name change, address proof", href: "/login" },
                 { icon: "🧾", title: "HRA Receipt", price: "FREE", desc: "HRA-compliant rent receipt for tax filing", href: "/hra-receipt" },
-                { icon: "🧮", title: "Stamp Duty Calculator", price: "FREE", desc: "Calculate stamp duty for all 28 states", href: "/stamp-duty-calculator" },
+                { icon: "🧮", title: "Stamp Duty Calculator", price: "FREE", desc: "Calculate stamp duty for all 22 states", href: "/stamp-duty-calculator" },
               ].map((doc) => (
                 <Link
                   key={doc.title}
@@ -228,7 +228,7 @@ export default function HomePage() {
         <section className="bg-white py-12 md:py-16 px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-              28 States Covered
+              22 States Covered
             </h2>
             <p className="text-gray-600 mb-8">
               State-specific rental laws, correct stamp duty, and registration rules
@@ -341,7 +341,7 @@ export default function HomePage() {
               </Link>
             </div>
             <p className="text-blue-200 text-xs mt-4">
-              No Aadhaar required &middot; DPDP Act 2025 Compliant &middot; 28 States
+              No Aadhaar required &middot; DPDP Act 2025 Compliant &middot; 22 States
             </p>
           </div>
         </section>

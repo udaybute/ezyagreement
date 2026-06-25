@@ -59,7 +59,7 @@ export default function DisclaimerPage() {
             number: "2",
             title: "Model Tenancy Act 2021 — NOT Nationwide",
             content:
-              "Viral social media posts claim 'new rent rules 2026 nationwide' — this is MISLEADING. The Model Tenancy Act 2021 has been adopted by ONLY 3-4 states: Uttar Pradesh, Rajasthan, Kerala, and partially Karnataka. Most states still follow their old rent control acts. The '2-month security deposit cap' applies ONLY in these MTA-adopting states.",
+              "Viral social media posts claim 'new rent rules 2026 nationwide' — this is MISLEADING. The Model Tenancy Act 2021 has been adopted by ONLY 3 states: Uttar Pradesh, Rajasthan, and Kerala. Most states, including Karnataka, still follow their old rent control acts. The '2-month security deposit cap' applies ONLY in these MTA-adopting states.",
             color: "amber",
           },
           {

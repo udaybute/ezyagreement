@@ -4,7 +4,7 @@
  * Stamp Duty Calculator - Public page
  * - No login required — free for everyone
  * - SEO: "stamp duty calculator rent agreement India"
- * - Shows correct stamp duty for all 28 states
+ * - Shows correct stamp duty for all 22 states
  * - Responsive: mobile first
  */
 
@@ -39,7 +39,7 @@ export default function StampDutyCalculatorPage() {
           Stamp Duty Calculator
         </h1>
         <p className="text-gray-600">
-          Calculate exact stamp duty for rental agreements across all 28 states
+          Calculate exact stamp duty for rental agreements across all 22 states
         </p>
       </div>
 

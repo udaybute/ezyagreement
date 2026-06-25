@@ -146,7 +146,7 @@ export default function TermsPage() {
             {[
               {
                 title: "State Laws Vary",
-                desc: "Rental laws differ across all 28 states. Our templates are based on each state's governing act but may not cover all edge cases. Always verify with a local advocate.",
+                desc: "Rental laws differ across all 22 states. Our templates are based on each state's governing act but may not cover all edge cases. Always verify with a local advocate.",
               },
               {
                 title: "MTA 2021",

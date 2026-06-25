@@ -113,7 +113,7 @@ export default function AboutPage() {
             {
               icon: "🇮🇳",
               title: "Made for India",
-              desc: "28 states, correct stamp duty, vernacular output. Built for every Indian, not just metro cities.",
+              desc: "22 states, correct stamp duty, vernacular output. Built for every Indian, not just metro cities.",
             },
             {
               icon: "⚡",

@@ -121,7 +121,7 @@ export default async function BrokerDashboardPage() {
         <div className="card">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-semibold text-gray-900">Recent Documents</h2>
-            <Link href="/agreements" className="text-blue-600 text-sm">
+            <Link href="/broker/reports" className="text-blue-600 text-sm">
               View all
             </Link>
           </div>

@@ -38,7 +38,7 @@ export default async function BillingPlansPage() {
         "WhatsApp delivery",
         "eStamp included",
         "30-day storage",
-        "Hindi/Marathi output",
+        "Hindi/Marathi/Tamil output",
         "GST invoice",
       ],
       cta: "Current Plan",
@@ -57,7 +57,7 @@ export default async function BillingPlansPage() {
         "Analytics & reports",
         "Priority support",
       ],
-      cta: "Upgrade to Broker",
+      cta: "Contact to Upgrade",
     },
     {
       id: "ca_reseller",
@@ -73,7 +73,7 @@ export default async function BillingPlansPage() {
         "CA dashboard",
         "Volume pricing",
       ],
-      cta: "Upgrade to CA Plan",
+      cta: "Contact to Upgrade",
     },
     {
       id: "enterprise",
@@ -182,7 +182,7 @@ export default async function BillingPlansPage() {
                 </Link>
               ) : (
                 <Link
-                  href={`/billing/checkout?plan=${plan.id}`}
+                  href="/contact"
                   className="mt-6 w-full rounded-lg bg-blue-600 py-2 text-center text-sm font-medium text-white hover:bg-blue-700"
                 >
                   {plan.cta}

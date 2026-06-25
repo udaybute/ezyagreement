@@ -25,7 +25,7 @@ export const PLANS = {
       "eStamp integration",
       "eSign optional",
       "30-day cloud storage",
-      "Hindi and Marathi output",
+      "Hindi, Marathi and Tamil output",
     ],
   },
   broker: {

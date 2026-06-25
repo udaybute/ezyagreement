@@ -53,7 +53,7 @@ const BLOG_POSTS: Record<string, {
     ],
   },
   "stamp-duty-all-states-2026": {
-    title: "Stamp Duty Rates for Rental Agreements — All 28 States (2026)",
+    title: "Stamp Duty Rates for Rental Agreements — All 22 States (2026)",
     category: "Stamp Duty",
     readTime: "12 min read",
     date: "2026-01-10",

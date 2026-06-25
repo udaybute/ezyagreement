@@ -22,7 +22,7 @@ export default function Footer() {
             </p>
             <p className="text-sm leading-relaxed">
               India's first privacy-first legal document platform.
-              Rs.199 flat. Instant PDF. 28 states covered.
+              Rs.199 flat. Instant PDF. 22 states covered.
             </p>
           </div>
 

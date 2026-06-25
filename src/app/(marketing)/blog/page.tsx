@@ -11,7 +11,7 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: "Blog — Rental Laws, Stamp Duty & Tax Guides | Elvatrixa Legal",
   description:
-    "Read guides on rental agreements, stamp duty rates, HRA tax rules, and police verification across India's 28 states.",
+    "Read guides on rental agreements, stamp duty rates, HRA tax rules, and police verification across India's 22 states.",
 }
 
 // ── Blog posts data ──────────────────────────────────────────
@@ -27,7 +27,7 @@ const BLOG_POSTS = [
   },
   {
     slug: "stamp-duty-all-states-2026",
-    title: "Stamp Duty Rates for Rental Agreements — All 28 States (2026)",
+    title: "Stamp Duty Rates for Rental Agreements — All 22 States (2026)",
     excerpt: "Complete comparison of stamp duty rates across India. Find out exactly how much you need to pay for your rental agreement.",
     category: "Stamp Duty",
     readTime: "12 min read",
@@ -75,7 +75,7 @@ export default function BlogPage() {
           Elvatrixa Blog
         </h1>
         <p className="text-gray-600">
-          Guides on rental laws, stamp duty, tax rules, and more — for all 28 states
+          Guides on rental laws, stamp duty, tax rules, and more — for all 22 states
         </p>
       </div>
 

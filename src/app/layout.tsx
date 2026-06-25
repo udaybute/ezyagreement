@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     default: "Elvatrixa Legal - Rental Agreement Rs.199 | Instant PDF",
     template: "%s | Elvatrixa Legal",
   },
-  description: "Generate state-specific rental agreements in 5 minutes. Rs.199 flat. Instant PDF + WhatsApp delivery. Hindi/Marathi output. DPDP-compliant. Zero Aadhaar storage.",
+  description: "Generate state-specific rental agreements in 5 minutes. Rs.199 flat. Instant PDF + WhatsApp delivery. Hindi/Marathi/Tamil output. DPDP-compliant. Zero Aadhaar storage.",
   keywords: ["rental agreement", "rent agreement online", "rent agreement Maharashtra", "rental agreement format"],
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
   openGraph: { type: "website", locale: "en_IN", siteName: "Elvatrixa Legal" },
