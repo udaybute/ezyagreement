@@ -24,15 +24,33 @@ export async function middleware(request: NextRequest) {
   )
 
   const { data: { user } } = await supabase.auth.getUser()
+  const pathname = request.nextUrl.pathname
 
   // Agar user logged in nahi hai aur protected route pe hai
-  if (!user && request.nextUrl.pathname.startsWith("/dashboard")) {
+  if (!user && pathname.startsWith("/dashboard")) {
     return NextResponse.redirect(new URL("/login", request.url))
   }
 
   // Agar user logged in hai aur login page pe hai
-  if (user && request.nextUrl.pathname.startsWith("/login")) {
+  if (user && pathname.startsWith("/login")) {
     return NextResponse.redirect(new URL("/dashboard", request.url))
+  }
+
+  // Onboarding gate — naye users ko app routes se onboarding pe redirect karo
+  const appRoutePrefixes = [
+    "/dashboard", "/profile", "/agreements", "/settings",
+    "/billing", "/admin", "/broker", "/receipts",
+  ]
+  if (user && appRoutePrefixes.some((p) => pathname.startsWith(p))) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("onboarding_completed")
+      .eq("id", user.id)
+      .single()
+
+    if (profile && profile.onboarding_completed === false) {
+      return NextResponse.redirect(new URL("/onboarding", request.url))
+    }
   }
 
   return supabaseResponse

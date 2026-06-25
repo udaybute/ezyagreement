@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/db/server"
+import { createAdminClient } from "@/lib/db/admin"
 import { redirect, notFound } from "next/navigation"
 import Link from "next/link"
 
@@ -20,13 +21,16 @@ export default async function AgreementDetailPage({
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect("/login")
 
-  // ── Fetch agreement ──────────────────────────────────────
-  const { data: doc } = await supabase
-    .from("documents")
-    .select("*")
-    .eq("id", params.id)
-    .eq("user_id", user.id) // RLS — user can only see own docs
+  // ── Admins can view any document; everyone else only their own ──
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
     .single()
+
+  const doc = profile?.role === "admin"
+    ? (await createAdminClient().from("documents").select("*").eq("id", params.id).single()).data
+    : (await supabase.from("documents").select("*").eq("id", params.id).eq("user_id", user.id).single()).data
 
   // ── If not found ─────────────────────────────────────────
   if (!doc) notFound()
@@ -123,17 +127,17 @@ export default async function AgreementDetailPage({
                 <div>
                   <p className="text-gray-500">Name</p>
                   <p className="font-medium text-gray-900">
-                    {data.landlord?.name}
+                    {data.landlord_name}
                   </p>
                 </div>
                 <div>
                   <p className="text-gray-500">Phone</p>
-                  <p className="text-gray-700">{data.landlord?.phone}</p>
+                  <p className="text-gray-700">{data.landlord_phone}</p>
                 </div>
                 <div>
                   <p className="text-gray-500">ID Type</p>
                   <p className="text-gray-700 uppercase">
-                    {data.landlord?.id_type}
+                    {data.landlord_id_type}
                   </p>
                 </div>
               </div>
@@ -148,17 +152,17 @@ export default async function AgreementDetailPage({
                 <div>
                   <p className="text-gray-500">Name</p>
                   <p className="font-medium text-gray-900">
-                    {data.tenant?.name}
+                    {data.tenant_name}
                   </p>
                 </div>
                 <div>
                   <p className="text-gray-500">Phone</p>
-                  <p className="text-gray-700">{data.tenant?.phone}</p>
+                  <p className="text-gray-700">{data.tenant_phone}</p>
                 </div>
                 <div>
                   <p className="text-gray-500">ID Type</p>
                   <p className="text-gray-700 uppercase">
-                    {data.tenant?.id_type}
+                    {data.tenant_id_type}
                   </p>
                 </div>
               </div>
@@ -253,9 +257,13 @@ export default async function AgreementDetailPage({
           className="btn-secondary flex-1 text-center">
           ← Dashboard
         </Link>
-        <Link href="/agreements/new"
+        <Link href={`/agreements/${doc.id}/preview`}
+          className="btn-secondary flex-1 text-center">
+          Preview Document
+        </Link>
+        <Link href={`/agreements/${doc.id}/download`}
           className="btn-primary flex-1 text-center">
-          Create New Agreement
+          Download
         </Link>
       </div>
 
