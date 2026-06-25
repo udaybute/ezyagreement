@@ -9,14 +9,14 @@ import Razorpay from "razorpay"
 import { createClient } from "@/lib/db/server"
 import { calculateTotal } from "@/lib/constants"
 
-// ── Initialize Razorpay ──────────────────────────────────────
-const razorpay = new Razorpay({
-  key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
-  key_secret: process.env.RAZORPAY_KEY_SECRET!,
-})
-
 export async function POST(request: Request) {
   try {
+    // ── Initialize Razorpay ──────────────────────────────────
+    const razorpay = new Razorpay({
+      key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
+      key_secret: process.env.RAZORPAY_KEY_SECRET!,
+    })
+
     // ── Check if user is logged in ───────────────────────────
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
